@@ -1,0 +1,13 @@
+{
+  "name": "tiktok-live-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "tiktok-live-connector": "^1.2.3",
+    "ws": "^8.17.0"
+  }
+}
