@@ -1,0 +1,170 @@
+/* Variables CSS para gestión de colores */
+:root {
+    --bg-dark: #111827;
+    --bg-card: #1f2937;
+    --text-light: #f3f4f6;
+    --color-tiktok: #ee1d52;
+    --color-accent: #00f5ff;
+    --color-join: #10b981;
+    --color-follow: #f59e0b;
+    --color-gift: #ef4444;
+}
+
+/* --- Base General (PC View) --- */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: row; 
+    gap: 20px;
+    min-height: 100vh;
+}
+
+h2, h3, h4 {
+    margin-top: 0;
+    color: var(--color-accent);
+}
+
+/* --- Panel de Control (Aside) --- */
+#control-panel {
+    width: 280px;
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    flex-shrink: 0;
+}
+
+#control-panel input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #374151;
+    color: var(--text-light);
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Botones */
+.button-group { display: flex; gap: 10px; margin-bottom: 15px; }
+.btn { flex-grow: 1; padding: 10px 15px; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s, transform 0.1s; }
+.btn-connect { background-color: var(--color-join); color: var(--bg-dark); }
+.btn-connect:hover { background-color: #059669; }
+.btn-disconnect { background-color: var(--color-tiktok); color: var(--text-light); }
+.btn-disconnect:hover { background-color: #dc2626; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.status-indicator { padding: 8px; border-radius: 4px; text-align: center; background-color: #374151; border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+/* --- Contenedor Principal (Chat + Música) --- */
+#main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#chat-container {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Estilo de los mensajes */
+.chat-msg { padding: 8px 10px; margin-bottom: 5px; border-radius: 4px; background-color: rgba(255, 255, 255, 0.05); animation: fadeIn 0.4s ease; word-wrap: break-word; }
+.msg-chat .username { font-weight: bold; color: var(--color-accent); }
+.msg-join { background-color: rgba(16, 185, 129, 0.2); border-left: 3px solid var(--color-join); }
+.msg-follow { background-color: rgba(245, 158, 11, 0.2); border-left: 3px solid var(--color-follow); }
+.msg-gift { background-color: rgba(239, 68, 68, 0.2); border-left: 3px solid var(--color-gift); }
+.msg-system { background-color: rgba(0, 245, 255, 0.1); border: 1px dashed var(--color-accent); font-style: italic; }
+
+/* --- Panel de Música --- */
+#music-panel {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+#current-song { font-size: 1.1rem; font-weight: bold; color: var(--color-join); margin-bottom: 10px; }
+#music-controls { display: flex; gap: 10px; margin-bottom: 15px; }
+.btn-control { background-color: #6366f1; color: var(--text-light); }
+#playlist-queue { list-style-type: none; padding: 0; }
+#playlist-queue li { padding: 5px 0; border-bottom: 1px dashed #374151; font-size: 0.9rem; }
+#playlist-queue li:last-child { border-bottom: none; }
+
+/* --- Caja de Alerta Flotante --- */
+.alert {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-gift);
+    color: var(--text-light);
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(239, 68, 68, 0.5);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+.hidden { display: none !important; }
+
+/* Animaciones */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+#chat-messages::-webkit-scrollbar { width: 8px; }
+#chat-messages::-webkit-scrollbar-thumb { background-color: #4b5563; border-radius: 10px; }
+#chat-messages::-webkit-scrollbar-track { background: transparent; }
+
+/* =======================================================
+   RESPONSIVIDAD: MÓVIL (Max-width: 768px)
+   ======================================================= */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        flex-direction: column; 
+        min-height: auto;
+    }
+
+    #control-panel {
+        width: auto;
+        position: static; 
+        margin-bottom: 10px;
+        top: auto;
+    }
+
+    #main-content {
+        min-height: 50vh;
+    }
+
+    #chat-container {
+        height: auto;
+        min-height: 40vh;
+    }
+
+    .alert {
+        font-size: 1rem;
+        padding: 10px 20px;
+        top: 10px;
+    }
+  }
+           
