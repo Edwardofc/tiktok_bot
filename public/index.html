@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Live Reader & Alerts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <aside id="control-panel">
+    <h3>Conexión Live</h3>
+    <input id="username" type="text" placeholder="Usuario de TikTok (sin @)" autocomplete="off" />
+    <div class="button-group">
+      <button id="connect-btn" onclick="connect()" class="btn btn-connect">Conectar</button>
+      <button id="disconnect-btn" onclick="disconnect()" class="btn btn-disconnect" disabled>Desconectar</button>
+    </div>
+    <p id="status" class="status-indicator">Estado: Desconectado</p>
+  </aside>
+
+  <main id="main-content">
+      <section id="chat-container">
+          <h4>Chat de Live</h4>
+          <div id="chat-messages">
+              </div>
+      </section>
+
+      <section id="music-panel">
+          <h4>Música en Cola</h4>
+          <div id="current-song">Canción Actual: Ninguna</div>
+          <div id="music-controls">
+              <button onclick="sendMusicCommand('pausar')" class="btn btn-control">⏸️ Pausar</button>
+              <button onclick="sendMusicCommand('pasar')" class="btn btn-control">⏭️ Siguiente</button>
+          </div>
+          <ol id="playlist-queue">
+              </ol>
+      </section>
+  
+      <div id="alert-box" class="alert hidden">
+          </div>
+  </main>
+
+  <audio id="audio-player" preload="auto"></audio> 
+
+  <script src="main.js"></script>
+</body>
+                </html>
+                
